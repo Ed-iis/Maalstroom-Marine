@@ -24,16 +24,6 @@ function updateDashboard(data) {
   document.getElementById("longitude").textContent =
     data.positionAvailable ? data.longitudeDisplay : "—";
 
-  document.getElementById("latitudeDecimal").textContent =
-    data.positionAvailable && Number.isFinite(data.latitudeDecimal)
-      ? `${data.latitudeDecimal.toFixed(6)}°`
-      : "—";
-
-  document.getElementById("longitudeDecimal").textContent =
-    data.positionAvailable && Number.isFinite(data.longitudeDecimal)
-      ? `${data.longitudeDecimal.toFixed(6)}°`
-      : "—";
-
   if (data.depthAvailable && Number.isFinite(data.depthRaw)) {
     const corrected = data.depthRaw + (Number(data.depthOffset) || 0);
     document.getElementById("depthValue").textContent = corrected.toFixed(1);

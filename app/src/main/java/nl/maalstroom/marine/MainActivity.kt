@@ -253,11 +253,10 @@ class MainActivity : AppCompatActivity() {
         val raw = value.toDoubleOrNull() ?: return "—"
         val degrees = floor(raw / 100.0).toInt()
         val minutes = raw - degrees * 100.0
-        val degreeWidth = if (longitude) 3 else 2
 
         return String.format(
             Locale.US,
-            "%0${degreeWidth}d° %07.4f′ %s",
+            "%02d° %05.2f′ %s",
             degrees,
             minutes,
             hemisphere
