@@ -1,0 +1,24 @@
+MAALSTROOM MARINE v0.2 — LIVE NMEA
+
+Dit pakket is een overlay voor het bestaande Android Studio-project.
+
+1. Pak dit zipbestand uit.
+2. Kopieer de map 'app' naar de hoofdmap van jouw bestaande project.
+3. Kies 'Vervang' of 'Merge' wanneer macOS daarom vraagt.
+4. Open het project opnieuw in Android Studio.
+5. Wacht tot Gradle Sync klaar is.
+6. Verbind de Samsung via USB en schakel USB debugging in.
+7. Kies de Samsung bovenin Android Studio en klik Run (groene driehoek).
+
+De app:
+- luistert op UDP-broadcastpoort 10110;
+- leest RMC-posities;
+- leest DPT-diepte en offset;
+- toont de gecorrigeerde diepte = ruwe diepte + offset.
+
+LET OP
+De Kotlin-package is ingesteld op:
+nl.maalstroom.marine
+
+Wanneer jouw project een ander package heeft, moet de eerste regel van
+MainActivity.kt worden aangepast en moet het bestand in de bijbehorende map staan.

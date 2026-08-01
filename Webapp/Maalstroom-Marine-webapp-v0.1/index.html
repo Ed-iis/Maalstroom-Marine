@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#06141f">
+  <title>Maalstroom Marine</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <h1>Maalstroom Marine</h1>
+        <p class="subtitle">Boordinformatie</p>
+      </div>
+
+      <div id="status" class="status status--test">
+        <span class="status__dot"></span>
+        <span id="statusText">Testgegevens</span>
+      </div>
+    </header>
+
+    <section class="dashboard">
+      <article class="card card--position">
+        <div class="card__label">Positie</div>
+
+        <div class="coordinate">
+          <span id="latitude">53° 17.4669′ N</span>
+        </div>
+
+        <div class="coordinate">
+          <span id="longitude">005° 05.3104′ E</span>
+        </div>
+
+        <div class="decimal-position">
+          <span id="latitudeDecimal">53.291115°</span>
+          <span id="longitudeDecimal">5.088506°</span>
+        </div>
+      </article>
+
+      <article class="card card--depth">
+        <div class="card__label">Diepte</div>
+
+        <div class="depth">
+          <span id="depthValue">4.4</span>
+          <span class="depth__unit">m</span>
+        </div>
+
+        <div class="depth-detail">
+          <span>Transducer: <strong id="depthRaw">4.1 m</strong></span>
+          <span>Offset: <strong id="depthOffset">+0.3 m</strong></span>
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <span id="lastUpdate">Laatst bijgewerkt: --:--:--</span>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
