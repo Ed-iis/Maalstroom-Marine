@@ -1,0 +1,19 @@
+Maalstroom Marine v0.4
+
+Wijzigingen:
+- positie iets kleiner;
+- graden en decimale minuten met twee decimalen;
+- oostelijke graden met twee cijfers, bijvoorbeeld 05°;
+- geen kleine decimale positie;
+- ware windrichting en ware windsnelheid onder de positie;
+- heading uitsluitend uit $IIHDG;
+- $HCHDG wordt genegeerd;
+- ware wind uitsluitend uit $IIMWV met referentie T;
+- magnetische variatie uit $IIHDG wordt toegepast.
+
+Installatie:
+1. Pak het zipbestand uit.
+2. Kopieer de map app naar de hoofdmap van je Android Studio-project.
+3. Kies Samenvoegen/Merge en Vervang.
+4. Klik in Android Studio op Run.
+5. Als alles werkt: commit als 'v0.4 Ware wind toegevoegd' en Push origin.
