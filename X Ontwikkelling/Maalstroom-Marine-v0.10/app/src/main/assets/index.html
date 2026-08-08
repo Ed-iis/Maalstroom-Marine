@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+  <meta name="theme-color" content="#06141f">
+  <title>Maalstroom Marine</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <h1>Maalstroom Marine</h1>
+
+      <div id="status" class="status">
+        <span class="status__dot"></span>
+        <span id="statusText">Wachten op NMEA…</span>
+      </div>
+    </header>
+
+    <section id="page1" class="page page--active"><section class="dashboard">
+      <div class="column">
+        <article class="card card--top">
+          <div class="card__label">Positie</div>
+
+          <div class="coordinate" id="latitude">—</div>
+          <div class="coordinate" id="longitude">—</div>
+
+          <div class="wind-section">
+            <div class="wind-item">
+              <span class="wind-item__label">
+                Ware windrichting
+              </span>
+              <span class="wind-item__value" id="trueWindDirection">
+                —
+              </span>
+            </div>
+
+            <div class="wind-item">
+              <span class="wind-item__label">
+                Ware windsnelheid
+              </span>
+              <span class="wind-item__value">
+                <span id="trueWindSpeed">—</span>
+                <span class="wind-item__unit">kn</span>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card card--chart">
+          <div class="chart-header">
+            <div class="card__label chart-title">
+              Ware wind — laatste 60 minuten
+            </div>
+
+            <div class="chart-legend">
+              <span class="legend-item">
+                <span class="legend-line legend-line--direction"></span>
+                Richting
+              </span>
+              <span class="legend-item">
+                <span class="legend-line legend-line--speed"></span>
+                Snelheid
+              </span>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <canvas id="windChart"></canvas>
+          </div>
+        </article>
+      </div>
+
+      <div class="column">
+        <article class="card card--top">
+          <div class="card__label">Diepte</div>
+
+          <div class="depth">
+            <span id="depthValue">—</span>
+            <span class="depth__unit">m</span>
+          </div>
+
+          <div class="depth-detail">
+            <span>
+              Transducer:
+              <strong id="depthRaw">—</strong>
+            </span>
+            <span>
+              Offset:
+              <strong id="depthOffset">—</strong>
+            </span>
+          </div>
+        </article>
+
+        <article class="card card--chart">
+          <div class="chart-header">
+            <div class="card__label chart-title">
+              Diepte — laatste 24 uur
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <canvas id="depthChart"></canvas>
+          </div>
+        </article>
+      </div>
+    </section></section>
+    <section id="page2" class="page page--autopilot">
+      <div class="autopilot-list">
+        <div class="autopilot-row"><span>Heading</span><strong id="apHeading">—</strong></div>
+        <div class="autopilot-row"><span>COG</span><strong id="apCog">—</strong></div>
+        <div class="autopilot-row"><span>STW</span><strong id="apStw">—</strong></div>
+        <div class="autopilot-row"><span>SOG</span><strong id="apSog">—</strong></div>
+        <div class="autopilot-row"><span>Rudder</span><strong id="apRudder">—</strong></div>
+        <div class="autopilot-row"><span>Pitch</span><strong id="apPitch">—</strong></div>
+        <div class="autopilot-row"><span>Roll</span><strong id="apRoll">—</strong></div>
+        <div class="autopilot-row"><span>Yaw</span><strong id="apYaw">—</strong></div>
+        <div class="autopilot-row"><span>Afstand tot waypoint</span><strong id="apDistanceWaypoint">—</strong></div>
+        <div class="autopilot-row"><span>Stuurmodus</span><strong id="apMode">—</strong></div>
+        <div class="autopilot-row"><span>Gestuurde koers</span><strong id="apCommandedCourse">—</strong></div>
+      </div>
+    </section>
+    <section id="page3" class="page page--empty"><div>Pagina 3</div></section>
+    <section id="page4" class="page page--empty"><div>Pagina 4</div></section>
+    <section id="page5" class="page page--empty"><div>Pagina 5</div></section>
+
+    <footer class="footer">
+      <span id="lastUpdate">
+        Nog geen live gegevens ontvangen
+      </span>
+    </footer>
+    <nav class="tabs">
+      <button class="tab tab--active" data-page="1">1</button>
+      <button class="tab" data-page="2">2</button>
+      <button class="tab" data-page="3">3</button>
+      <button class="tab" data-page="4">4</button>
+      <button class="tab" data-page="5">5</button>
+    </nav>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

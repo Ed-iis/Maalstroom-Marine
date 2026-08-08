@@ -1,0 +1,47 @@
+MAALSTROOM MARINE v0.10
+
+BELANGRIJKSTE WIJZIGING
+NMEA-ontvangst en logging draaien nu in een Android foreground service.
+
+Hierdoor blijft Maalstroom Marine:
+- UDP-poort 10110 ontvangen;
+- iedere 10 seconden diepte/wind opslaan;
+- CSV-winddata schrijven;
+
+ook als:
+- Navionics of een andere app op de voorgrond staat;
+- Maalstroom Marine niet zichtbaar is;
+- het scherm uit staat.
+
+ANDROID MELDING
+Er verschijnt een permanente kleine Android-melding:
+"Maalstroom Marine - NMEA registratie actief".
+Dat is bewust: Android behandelt de datacollector daardoor als een
+foreground service en laat hem veel betrouwbaarder doorlopen.
+
+HISTORIE
+De grafiekhistorie staat niet meer alleen in de WebView.
+Meetpunten worden lokaal in SQLite opgeslagen.
+Als je Maalstroom Marine later weer opent, worden de laatste 24 uur
+opnieuw geladen en verschijnen de tussenliggende gegevens in de grafieken.
+
+De database houdt standaard 7 dagen historie bij.
+De bestaande dagelijkse wind-CSV blijft bestaan.
+
+BELANGRIJK OP SAMSUNG
+Na installatie:
+Instellingen > Apps > Maalstroom Marine > Batterij
+kies bij voorkeur "Onbeperkt" / "Unrestricted".
+Samsung kan anders zelfs foreground services op termijn beperken.
+
+INSTALLEREN
+1. Pak het zipbestand uit.
+2. Kopieer de map app over de bestaande app-map.
+3. Kies Samenvoegen/Merge en Vervang.
+4. Run in Android Studio.
+5. Controleer dat de Android-melding "NMEA registratie actief" verschijnt.
+6. Laat de app een paar meetpunten maken.
+7. Open daarna bijvoorbeeld Navionics of zet het scherm een tijdje uit.
+8. Open Maalstroom Marine opnieuw en controleer of de grafiek doorloopt.
+9. Als het werkt, commit:
+   v0.10 Achtergrondservice en persistente historie

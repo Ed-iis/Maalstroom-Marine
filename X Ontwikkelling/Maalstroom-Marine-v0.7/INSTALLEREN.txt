@@ -1,0 +1,22 @@
+MAALSTROOM MARINE v0.7
+
+WIJZIGINGEN
+
+- Alles past op één liggend scherm zonder scrollen.
+- Linker en rechter bovenste tegel exact even hoog.
+- Wind- en dieptegrafiek exact even hoog.
+- Bovenste tegels lager gemaakt.
+- Kleinere tussenruimtes en marges.
+- App blokkeert verticaal scrollen.
+
+INSTALLEREN
+
+1. Pak dit zipbestand uit.
+2. Kopieer de map 'app'.
+3. Plak die over de bestaande app-map van je Android-project.
+4. Kies Samenvoegen/Merge en Vervang.
+5. Ga terug naar Android Studio.
+6. Klik Run.
+7. Als alles goed staat, commit:
+   v0.7 Alles op één scherm
+8. Klik daarna Push origin.

@@ -1,0 +1,29 @@
+MAALSTROOM MARINE v0.11
+
+OPGELOST
+- De stylesheet van v0.10 was beschadigd; daarom schakelden tabs niet goed.
+- HTML en CSS zijn voor v0.11 volledig schoon opnieuw opgebouwd.
+- Altijd exact één pagina zichtbaar.
+- Tab 1 t/m 5 schakelen daadwerkelijk van pagina.
+- De tabstrook heeft permanent 48 px gereserveerde hoogte.
+- Geen pagina kan onder de tabs doorlopen.
+- Scrollen blijft overal uitgeschakeld.
+
+PAGINA'S
+1 = bestaande navigatiepagina
+2 = stuurautomaatgegevens
+3 = placeholder
+4 = placeholder
+5 = placeholder
+
+De foreground service, achtergrondlogging, SQLite-historie en CSV-opslag
+van v0.10 blijven behouden.
+
+INSTALLEREN
+1. Pak zip uit.
+2. Kopieer map app over bestaande app-map.
+3. Samenvoegen/Merge + Vervang.
+4. Run.
+5. Test eerst tabs 1, 2, 3, 4 en 5.
+6. Daarna eventueel commit:
+   v0.11 Tabs hersteld

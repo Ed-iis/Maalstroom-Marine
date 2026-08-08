@@ -1,0 +1,26 @@
+MAALSTROOM MARINE v0.5
+
+- Kleinere titel; Boordinformatie verwijderd.
+- Kleinere positie.
+- Windgrafiek over de laatste 60 minuten.
+- Verticale lijnen iedere 5 minuten.
+- Linkeras 0-360 graden in 16 delen.
+- Rechteras 0-32 kn; automatisch 0-62 kn boven 32 kn.
+- Iedere 10 seconden één meetpunt.
+- CSV-bestand in Downloads/Maalstroom Marine.
+- Bestandsnaam MM-yyyy-mm-dd.csv.
+- Kolommen: datum,tijd,windrichting_graden,ware_windsnelheid_kn.
+- Om 00:00 wordt automatisch naar een nieuw dagbestand geschreven.
+
+INSTALLEREN
+1. Pak de zip uit.
+2. Kopieer de map app over de bestaande app-map.
+3. Kies Samenvoegen/Merge en Vervang.
+4. Klik Run in Android Studio.
+5. Laat minimaal 20 seconden draaien.
+6. Controleer Bestanden > Downloads > Maalstroom Marine.
+7. Commit: v0.5 Windgrafiek en CSV-logging
+8. Push origin.
+
+De grafiek begint na iedere herstart leeg en vult zich daarna iedere 10 seconden.
+De CSV-bestanden blijven bewaard.

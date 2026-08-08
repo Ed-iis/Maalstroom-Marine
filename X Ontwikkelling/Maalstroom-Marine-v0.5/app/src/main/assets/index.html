@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#06141f">
+  <title>Maalstroom Marine</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <h1>Maalstroom Marine</h1>
+      <div id="status" class="status"><span class="status__dot"></span><span id="statusText">Wachten op NMEA…</span></div>
+    </header>
+    <section class="dashboard">
+      <div class="left-column">
+        <article class="card card--position">
+          <div class="card__label">Positie</div>
+          <div class="coordinate" id="latitude">—</div>
+          <div class="coordinate" id="longitude">—</div>
+          <div class="wind-section">
+            <div class="wind-item"><span class="wind-item__label">Ware windrichting</span><span class="wind-item__value" id="trueWindDirection">—</span></div>
+            <div class="wind-item"><span class="wind-item__label">Ware windsnelheid</span><span class="wind-item__value"><span id="trueWindSpeed">—</span><span class="wind-item__unit">kn</span></span></div>
+          </div>
+        </article>
+        <article class="card card--chart">
+          <div class="chart-header">
+            <div class="card__label chart-title">Ware wind — laatste 60 minuten</div>
+            <div class="chart-legend"><span><i class="dir"></i>Richting</span><span><i class="spd"></i>Snelheid</span></div>
+          </div>
+          <div class="chart-wrap"><canvas id="windChart"></canvas></div>
+        </article>
+      </div>
+      <article class="card card--depth">
+        <div class="card__label">Diepte</div>
+        <div class="depth"><span id="depthValue">—</span><span class="depth__unit">m</span></div>
+        <div class="depth-detail"><span>Transducer: <strong id="depthRaw">—</strong></span><span>Offset: <strong id="depthOffset">—</strong></span></div>
+      </article>
+    </section>
+    <footer class="footer"><span id="lastUpdate">Nog geen live gegevens ontvangen</span></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

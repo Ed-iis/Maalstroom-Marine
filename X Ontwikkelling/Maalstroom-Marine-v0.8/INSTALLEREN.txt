@@ -1,0 +1,8 @@
+MAALSTROOM MARINE v0.8
+- Vijf tabs onderaan: 1 t/m 5.
+- Tab 1 is de bestaande v0.7-pagina.
+- Tabs 2 t/m 5 zijn voorlopig leeg.
+- Ontworpen voor Samsung Galaxy Tab S10 FE landscape, zonder scrollen.
+
+Installeren: map app over de bestaande app-map kopiëren, samenvoegen/vervangen en Run.
+Daarna eventueel commit: v0.8 Tabbladen 1 t/m 5

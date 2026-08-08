@@ -10,17 +10,6 @@ const marineData = {
   trueWindDirection: null,
   trueWindSpeed: null,
   windAvailable: false,
-  heading: null,
-  cog: null,
-  stw: null,
-  sog: null,
-  rudder: null,
-  pitch: null,
-  roll: null,
-  yaw: null,
-  distanceToWaypoint: null,
-  autopilotMode: null,
-  commandedCourse: null,
   lastUpdateMillis: null
 };
 
@@ -32,17 +21,6 @@ const windHistory = [];
 const depthHistory = [];
 
 let windSpeedMaximum = 32;
-
-
-function setAutopilotValue(id, value, suffix, digits) {
-  const element = document.getElementById(id);
-  if (!element) return;
-
-  element.textContent =
-    Number.isFinite(value)
-      ? `${value.toFixed(digits)}${suffix}`
-      : "—";
-}
 
 function signed(value, digits = 1) {
   const sign = value >= 0 ? "+" : "";
@@ -91,32 +69,6 @@ function updateDashboard(data) {
     document.getElementById("trueWindSpeed").textContent = "—";
   }
 
-
-  setAutopilotValue("apHeading", data.heading, "°", 1);
-  setAutopilotValue("apCog", data.cog, "°", 1);
-  setAutopilotValue("apStw", data.stw, " kn", 1);
-  setAutopilotValue("apSog", data.sog, " kn", 1);
-  setAutopilotValue("apRudder", data.rudder, "°", 1);
-  setAutopilotValue("apPitch", data.pitch, "°", 1);
-  setAutopilotValue("apRoll", data.roll, "°", 1);
-  setAutopilotValue("apYaw", data.yaw, "°", 1);
-  setAutopilotValue(
-    "apDistanceWaypoint",
-    data.distanceToWaypoint,
-    " nm",
-    2
-  );
-
-  document.getElementById("apMode").textContent =
-    data.autopilotMode || "—";
-
-  setAutopilotValue(
-    "apCommandedCourse",
-    data.commandedCourse,
-    "°",
-    1
-  );
-
   const status = document.getElementById("status");
 
   status.classList.toggle(
@@ -150,7 +102,40 @@ window.updateMarineData = function updateMarineData(newData) {
 };
 
 window.addHistoryPoint = function addHistoryPoint(point) {
-  addHistoryPointInternal(point, true);
+  if (!Number.isFinite(point.timestamp)) {
+    return;
+  }
+
+  if (
+    Number.isFinite(point.windDirection) &&
+    Number.isFinite(point.windSpeed)
+  ) {
+    windHistory.push({
+      timestamp: point.timestamp,
+      direction: point.windDirection,
+      speed: point.windSpeed
+    });
+  }
+
+  if (Number.isFinite(point.depth)) {
+    depthHistory.push({
+      timestamp: point.timestamp,
+      depth: point.depth
+    });
+  }
+
+  trimHistory(windHistory, Date.now() - WIND_WINDOW_MS);
+  trimHistory(depthHistory, Date.now() - DEPTH_WINDOW_MS);
+
+  const highestSpeed = windHistory.reduce(
+    (maximum, item) => Math.max(maximum, item.speed),
+    0
+  );
+
+  windSpeedMaximum = highestSpeed > 32 ? 62 : 32;
+
+  drawWindChart();
+  drawDepthChart();
 };
 
 function trimHistory(history, cutoff) {
@@ -500,111 +485,3 @@ window.addEventListener("resize", () => {
 updateDashboard(marineData);
 drawWindChart();
 drawDepthChart();
-
-window.replaceHistory = function replaceHistory(points) {
-  windHistory.length = 0;
-  depthHistory.length = 0;
-
-  for (const point of points) {
-    addHistoryPointInternal(point, false);
-  }
-
-  updateWindScale();
-  drawWindChart();
-  drawDepthChart();
-};
-
-window.appendHistory = function appendHistory(points) {
-  for (const point of points) {
-    addHistoryPointInternal(point, false);
-  }
-
-  updateWindScale();
-  drawWindChart();
-  drawDepthChart();
-};
-
-function addHistoryPointInternal(point, redraw = true) {
-  if (!Number.isFinite(point.timestamp)) {
-    return;
-  }
-
-  if (
-    Number.isFinite(point.windDirection) &&
-    Number.isFinite(point.windSpeed)
-  ) {
-    windHistory.push({
-      timestamp: point.timestamp,
-      direction: point.windDirection,
-      speed: point.windSpeed
-    });
-  }
-
-  if (Number.isFinite(point.depth)) {
-    depthHistory.push({
-      timestamp: point.timestamp,
-      depth: point.depth
-    });
-  }
-
-  trimHistory(
-    windHistory,
-    Date.now() - WIND_WINDOW_MS
-  );
-
-  trimHistory(
-    depthHistory,
-    Date.now() - DEPTH_WINDOW_MS
-  );
-
-  if (redraw) {
-    updateWindScale();
-    drawWindChart();
-    drawDepthChart();
-  }
-}
-
-function updateWindScale() {
-  const highestSpeed = windHistory.reduce(
-    (maximum, item) =>
-      Math.max(maximum, item.speed),
-    0
-  );
-
-  windSpeedMaximum =
-    highestSpeed > 32 ? 62 : 32;
-}
-
-
-function selectPage(pageNumber) {
-  const wantedId = `page${pageNumber}`;
-
-  document.querySelectorAll(".page").forEach((page) => {
-    page.classList.toggle(
-      "page--active",
-      page.id === wantedId
-    );
-  });
-
-  document.querySelectorAll(".tab").forEach((tab) => {
-    tab.classList.toggle(
-      "tab--active",
-      tab.dataset.page === String(pageNumber)
-    );
-  });
-
-  if (pageNumber === 1) {
-    requestAnimationFrame(() => {
-      drawWindChart();
-      drawDepthChart();
-    });
-  }
-}
-
-document.querySelectorAll(".tab").forEach((tab) => {
-  tab.addEventListener("click", () => {
-    selectPage(Number(tab.dataset.page));
-  });
-});
-
-selectPage(1);

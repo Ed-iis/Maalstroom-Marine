@@ -1,0 +1,29 @@
+MAALSTROOM MARINE v0.6
+
+WIJZIGINGEN
+
+- Linker en rechter kolom exact even breed.
+- Windgrafiek blijft onder de linker informatietegel.
+- Nieuwe dieptegrafiek onder de rechter informatietegel.
+- Dieptegrafiek toont de laatste 24 uur.
+- Iedere 10 seconden een dieptemeetpunt.
+- Linkeras van 0 tot 10 meter.
+- Horizontale rasterlijn iedere meter.
+- Verticale rasterlijn iedere 3 uur.
+- In de dieptegrafiek staat 0 meter boven en 10 meter onder,
+  zodat grotere diepte ook visueel lager staat.
+- Bestaande windgrafiek en dagelijkse wind-CSV blijven behouden.
+
+INSTALLEREN
+
+1. Pak het zipbestand uit.
+2. Kopieer de map 'app'.
+3. Plak die over de bestaande app-map van je Android-project.
+4. Kies Samenvoegen/Merge en Vervang.
+5. Ga terug naar Android Studio.
+6. Klik Run.
+7. De dieptegrafiek begint leeg en krijgt iedere 10 seconden
+   een nieuw punt.
+8. Als alles werkt, commit in GitHub Desktop:
+   v0.6 Dieptegrafiek toegevoegd
+9. Klik daarna Push origin.

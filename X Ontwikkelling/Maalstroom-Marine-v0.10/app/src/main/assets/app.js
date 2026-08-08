@@ -501,6 +501,15 @@ updateDashboard(marineData);
 drawWindChart();
 drawDepthChart();
 
+function selectPage(n) {
+  document.querySelectorAll(".page").forEach(p => p.classList.toggle("page--active", p.id === `page${n}`));
+  document.querySelectorAll(".tab").forEach(t => t.classList.toggle("tab--active", t.dataset.page === String(n)));
+  if (n === 1) requestAnimationFrame(() => { drawWindChart(); drawDepthChart(); });
+}
+document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => selectPage(Number(t.dataset.page))));
+selectPage(1);
+
+
 window.replaceHistory = function replaceHistory(points) {
   windHistory.length = 0;
   depthHistory.length = 0;
@@ -574,37 +583,3 @@ function updateWindScale() {
   windSpeedMaximum =
     highestSpeed > 32 ? 62 : 32;
 }
-
-
-function selectPage(pageNumber) {
-  const wantedId = `page${pageNumber}`;
-
-  document.querySelectorAll(".page").forEach((page) => {
-    page.classList.toggle(
-      "page--active",
-      page.id === wantedId
-    );
-  });
-
-  document.querySelectorAll(".tab").forEach((tab) => {
-    tab.classList.toggle(
-      "tab--active",
-      tab.dataset.page === String(pageNumber)
-    );
-  });
-
-  if (pageNumber === 1) {
-    requestAnimationFrame(() => {
-      drawWindChart();
-      drawDepthChart();
-    });
-  }
-}
-
-document.querySelectorAll(".tab").forEach((tab) => {
-  tab.addEventListener("click", () => {
-    selectPage(Number(tab.dataset.page));
-  });
-});
-
-selectPage(1);
